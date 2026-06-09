@@ -1,5 +1,6 @@
 import { useState } from "react";
 import api from "../services/api";
+import { login } from "../services/authService";
 
 function Login() {
 
@@ -12,18 +13,15 @@ function Login() {
 
         try {
 
-            const response = await api.post("/auth/login", {
-                correo,
-                password
-            });
-
-            console.log("Respuesta del backend:");
-            console.log(response.data);
-            localStorage.setItem(
+            const response = await login(
+            correo,
+            password
+        );
+        
+        localStorage.setItem(
             "token",
-            response.data.token);
-
-            console.log("Token guardado");
+            response.token
+        );
 
         } catch (error) {
 
