@@ -1,10 +1,11 @@
-import { useState } from 'react'
-
+import Login from "./pages/Login";
 
 function App() {
-  return (
-    <h1>Veltrix</h1>
-  );
+
+    return (
+        <Login />
+    );
+
 }
 
 export default App;
