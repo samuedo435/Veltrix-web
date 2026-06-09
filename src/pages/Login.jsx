@@ -19,6 +19,11 @@ function Login() {
 
             console.log("Respuesta del backend:");
             console.log(response.data);
+            localStorage.setItem(
+            "token",
+            response.data.token);
+
+            console.log("Token guardado");
 
         } catch (error) {
 
