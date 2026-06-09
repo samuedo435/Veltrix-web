@@ -1,6 +1,7 @@
 import { useState } from "react";
 import api from "../services/api";
 import { login } from "../services/authService";
+import { useAuth } from "../context/AuthContext";
 
 function Login() {
 
@@ -18,10 +19,7 @@ function Login() {
             password
         );
         
-        localStorage.setItem(
-            "token",
-            response.token
-        );
+        await login(response.token);
 
         } catch (error) {
 
