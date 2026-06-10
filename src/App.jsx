@@ -20,7 +20,7 @@ function App() {
         <BrowserRouter>
 
             <Navbar />
-            
+
             <Routes>
 
                 <Route
@@ -30,11 +30,7 @@ function App() {
 
                 <Route
                     path="/"
-                    element={
-                        <ProtectedRoute>
-                            <Home />
-                        </ProtectedRoute>
-                    }
+                    element={<Home />}
                 />
 
                 <Route
@@ -44,11 +40,7 @@ function App() {
 
                 <Route
                     path="/profile"
-                    element={
-                        <ProtectedRoute>
-                            <Profile />
-                        </ProtectedRoute>
-                    }
+                    element={<Profile />}
                 />
 
                 <Route
