@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Productos from "./pages/Productos";
 import Profile from "./pages/Profile";
+import Navbar from "./components/Navbar";
 
 import ProtectedRoute from "./routes/ProtectedRoute";
 
@@ -18,6 +19,8 @@ function App() {
 
         <BrowserRouter>
 
+            <Navbar />
+            
             <Routes>
 
                 <Route
@@ -36,11 +39,7 @@ function App() {
 
                 <Route
                     path="/productos"
-                    element={
-                        <ProtectedRoute>
-                            <Productos />
-                        </ProtectedRoute>
-                    }
+                    element={<Productos />}
                 />
 
                 <Route
