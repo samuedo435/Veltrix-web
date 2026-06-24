@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import api from "../services/api";
+import { obtenerProductos } from "../services/productoService";
 import ProductCard from "../components/ProductCard";
 
 function Productos() {
@@ -13,10 +13,8 @@ function Productos() {
 
             try {
 
-                const response =
-                    await api.get("/productos");
-
-                setProductos(response.data);
+                const data = await obtenerProductos();
+                setProductos(data);
 
             } catch (error) {
 

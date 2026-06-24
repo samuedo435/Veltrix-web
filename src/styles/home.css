@@ -1,0 +1,29 @@
+.hero-section {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-content {
+    max-width: 700px;
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    color: var(--text-secondary);
+    font-size: 1.3rem;
+    margin-bottom: 40px;
+}
+
+.btn-hero {
+    background: var(--primary);
+    color: black;
+    padding: 16px 40px;
+    border-radius: 50px;
+    font-weight: 700;
+}
