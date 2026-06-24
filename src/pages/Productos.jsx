@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
+import ProductCard from "../components/ProductCard";
 
 function Productos() {
 
@@ -45,44 +46,23 @@ function Productos() {
 
             <h1>Catálogo Veltrix</h1>
 
-            {productos.map(producto => (
-
-                <div
-                    key={producto.id}
-                    style={{
-                        border: "1px solid #ccc",
-                        padding: "15px",
-                        margin: "10px"
-                    }}
-                >
-
-                    <h3>{producto.nombre}</h3>
-
-                    <p>
-                        {producto.descripcion}
-                    </p>
-
-                    <p>
-                        Categoría:
-                        {" "}
-                        {producto.categoriaNombre || "Sin categoría"}
-                    </p>
-
-                    <p>
-                        Precio:
-                        {" "}
-                        ${producto.precio.toLocaleString()}
-                    </p>
-
-                    <p>
-                        Stock:
-                        {" "}
-                        {producto.stock}
-                    </p>
-
-                </div>
-
-            ))}
+            <div
+                style={{
+                    display: "flex",
+                    flexWrap: "wrap"
+                }}
+            >
+                {
+                    productos.map(producto => (
+                    
+                        <ProductCard
+                            key={producto.id}
+                            producto={producto}
+                        />
+                    
+                    ))
+                }
+            </div>
 
         </div>
     );
