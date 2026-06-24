@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { obtenerProductoPorId } from "../services/productoService";
+import { useCart } from "../context/CartContext";
 
 function DetalleProducto() {
 
@@ -11,6 +12,8 @@ function DetalleProducto() {
 
     const [loading, setLoading] =
         useState(true);
+
+    const { agregarAlCarrito } = useCart();
 
     useEffect(() => {
 
@@ -116,6 +119,9 @@ function DetalleProducto() {
 
                     <button
                         className="btn btn-info mt-4"
+                        onClick={() =>
+                                    agregarAlCarrito(producto)
+                                }
                     >
                         Agregar al carrito
                     </button>

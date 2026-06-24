@@ -11,6 +11,7 @@ import Productos from "./pages/Productos";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar";
 import DetalleProducto from "./pages/DetalleProducto";
+import Carrito from "./pages/Carrito";
 
 function App() {
 
@@ -50,6 +51,11 @@ function App() {
                 <Route
                     path="/productos/:id"
                     element={<DetalleProducto />}
+                />
+
+                <Route
+                    path="/carrito"
+                    element={<Carrito />}
                 />
 
             </Routes>

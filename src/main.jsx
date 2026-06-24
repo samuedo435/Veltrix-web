@@ -4,6 +4,7 @@ import App from "./App";
 import { AuthProvider } from "./context/AuthContext";
 import "./styles/theme.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { CartProvider } from "./context/CartContext";
 
 ReactDOM.createRoot(
     document.getElementById("root")
@@ -12,7 +13,9 @@ ReactDOM.createRoot(
     <React.StrictMode>
 
         <AuthProvider>
-            <App />
+            <CartProvider>
+                <App />
+            </CartProvider>
         </AuthProvider>
 
     </React.StrictMode>
