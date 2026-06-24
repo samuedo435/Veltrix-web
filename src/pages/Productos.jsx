@@ -20,10 +20,7 @@ function Productos() {
 
             } catch (error) {
 
-                console.error(
-                    "Error al cargar productos",
-                    error
-                );
+                console.error(error);
 
             } finally {
 
@@ -36,32 +33,36 @@ function Productos() {
     }, []);
 
     if (loading) {
-
-        return <h2>Cargando productos...</h2>;
+        return <h2>Cargando...</h2>;
     }
 
     return (
 
-        <div>
+        <div className="container py-5">
 
-            <h1>Catálogo Veltrix</h1>
+            <h1 className="mb-5">
+                Catálogo Veltrix
+            </h1>
 
-            <div
-                style={{
-                    display: "flex",
-                    flexWrap: "wrap"
-                }}
-            >
+            <div className="row g-4">
+
                 {
                     productos.map(producto => (
-                    
-                        <ProductCard
+
+                        <div
+                            className="col-lg-4 col-md-6"
                             key={producto.id}
-                            producto={producto}
-                        />
-                    
+                        >
+
+                            <ProductCard
+                                producto={producto}
+                            />
+
+                        </div>
+
                     ))
                 }
+
             </div>
 
         </div>

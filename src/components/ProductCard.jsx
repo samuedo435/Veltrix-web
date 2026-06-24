@@ -1,39 +1,41 @@
+import "../styles/product-card.css";
+
 function ProductCard({ producto }) {
-
     return (
+        <div className="product-card">
 
-        <div
-            style={{
-                border: "1px solid #ccc",
-                padding: "15px",
-                margin: "10px",
-                width: "250px"
-            }}
-        >
+            <div className="product-image">
+                Imagen
+            </div>
 
-            <h3>{producto.nombre}</h3>
+            <div className="product-body">
 
-            <p>{producto.descripcion}</p>
+                <h5>{producto.nombre}</h5>
 
-            <p>
-                Categoría:
-                {" "}
-                {producto.categoriaNombre || "Sin categoría"}
-            </p>
+                <p className="product-category">
+                    {producto.categoriaNombre || "Sin categoría"}
+                </p>
 
-            <p>
-                ${producto.precio.toLocaleString()}
-            </p>
+                <p className="product-description">
+                    {producto.descripcion}
+                </p>
 
-            <p>
-                Stock:
-                {" "}
-                {producto.stock}
-            </p>
+                <div className="product-footer">
 
-            <button>
-                Ver detalle
-            </button>
+                    <span className="product-price">
+                        $
+                        {producto.precio.toLocaleString()}
+                    </span>
+
+                    <button
+                        className="btn-product"
+                    >
+                        Ver más
+                    </button>
+
+                </div>
+
+            </div>
 
         </div>
     );
