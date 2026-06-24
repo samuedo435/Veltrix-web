@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import "../styles/navbar.css";
 
 function Navbar() {
 
@@ -10,52 +11,64 @@ function Navbar() {
     } = useAuth();
 
     return (
+        <nav className="navbar-custom">
 
-        <nav
-            style={{
-                padding: "15px",
-                borderBottom: "1px solid gray",
-                display: "flex",
-                gap: "15px"
-            }}
-        >
+            <div className="container">
 
-            <Link to="/">
-                Inicio
-            </Link>
+                <div className="d-flex justify-content-between align-items-center py-4">
 
-            <Link to="/productos">
-                Productos
-            </Link>
+                    <Link
+                        to="/"
+                        className="logo"
+                    >
+                        Veltrix
+                    </Link>
 
-            {
-                isAuthenticated
-                    ? (
-                        <>
-                            <Link to="/profile">
-                                Perfil
-                            </Link>
+                    <div className="d-flex align-items-center gap-4">
 
-                            <span>
-                                {usuario.correo}
-                            </span>
-
-                            <button
-                                onClick={logout}
-                            >
-                                Cerrar sesión
-                            </button>
-                        </>
-                    )
-                    : (
-                        <Link to="/login">
-                            Iniciar sesión
+                        <Link to="/">
+                            Inicio
                         </Link>
-                    )
-            }
+
+                        <Link to="/productos">
+                            Tienda
+                        </Link>
+
+                        <Link to="/carrito">
+                            Carrito
+                        </Link>
+
+                        {
+                            isAuthenticated ? (
+                                <>
+                                    <span>
+                                        {usuario.correo}
+                                    </span>
+
+                                    <button
+                                        className="btn-login"
+                                        onClick={logout}
+                                    >
+                                        Cerrar sesión
+                                    </button>
+                                </>
+                            ) : (
+                                <Link
+                                    className="btn-login"
+                                    to="/login"
+                                >
+                                    Iniciar sesión
+                                </Link>
+                            )
+                        }
+
+                    </div>
+
+                </div>
+
+            </div>
 
         </nav>
-
     );
 }
 
