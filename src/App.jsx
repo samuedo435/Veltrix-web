@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import Productos from "./pages/Productos";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar";
+import DetalleProducto from "./pages/DetalleProducto";
 
 function App() {
 
@@ -44,6 +45,11 @@ function App() {
                 <Route
                     path="*"
                     element={<Navigate to="/" />}
+                />
+
+                <Route
+                    path="/productos/:id"
+                    element={<DetalleProducto />}
                 />
 
             </Routes>
