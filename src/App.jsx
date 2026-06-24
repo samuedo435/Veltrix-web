@@ -11,8 +11,6 @@ import Productos from "./pages/Productos";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar";
 
-import ProtectedRoute from "./routes/ProtectedRoute";
-
 function App() {
 
     return (

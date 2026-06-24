@@ -19,7 +19,10 @@ function Productos() {
 
             } catch (error) {
 
-                console.error(error);
+                console.error(
+                    "Error al cargar productos",
+                    error
+                );
 
             } finally {
 
@@ -47,9 +50,9 @@ function Productos() {
                 <div
                     key={producto.id}
                     style={{
-                        border: "1px solid gray",
-                        margin: "10px",
-                        padding: "10px"
+                        border: "1px solid #ccc",
+                        padding: "15px",
+                        margin: "10px"
                     }}
                 >
 
@@ -62,13 +65,13 @@ function Productos() {
                     <p>
                         Categoría:
                         {" "}
-                        {producto.categoriaNombre}
+                        {producto.categoriaNombre || "Sin categoría"}
                     </p>
 
                     <p>
                         Precio:
                         {" "}
-                        ${producto.precio}
+                        ${producto.precio.toLocaleString()}
                     </p>
 
                     <p>

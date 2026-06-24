@@ -1,34 +1,36 @@
 import { useState } from "react";
 import api from "../services/api";
-import { login } from "../services/authService";
+import {login as loginService} from "../services/authService";
 import { useAuth } from "../context/AuthContext";
 
 function Login() {
 
     const [correo, setCorreo] = useState("");
     const [password, setPassword] = useState("");
+    const { login } = useAuth();
 
     const handleSubmit = async (e) => {
-
-        e.preventDefault();
-
-        try {
-
-            const response = await login(
-            correo,
-            password
-        );
         
-        await login(response.token);
-
+        e.preventDefault();
+        
+        try {
+        
+            const response =
+                await loginService(
+                    correo,
+                    password
+                );
+            
+            await login(response.token);
+            
         } catch (error) {
-
-            console.error("Error:");
-
+        
+            console.error(error);
+        
             if (error.response) {
-                console.error(error.response.data);
-            } else {
-                console.error(error.message);
+                console.error(
+                    error.response.data
+                );
             }
         }
     };
