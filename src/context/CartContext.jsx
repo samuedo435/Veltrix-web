@@ -36,7 +36,7 @@ export function CartProvider({ children }) {
     }, [carrito]);
 
     const agregarAlCarrito =
-        (producto) => {
+        (producto, cantidad = 1) => {
 
             const existe =
                 carrito.find(
@@ -52,7 +52,7 @@ export function CartProvider({ children }) {
                             ? {
                                 ...item,
                                 cantidad:
-                                    item.cantidad + 1
+                                    item.cantidad + cantidad
                             }
                             : item
                     )
@@ -64,7 +64,7 @@ export function CartProvider({ children }) {
                     ...carrito,
                     {
                         ...producto,
-                        cantidad: 1
+                        cantidad: producto.cantidad || cantidad
                     }
                 ]);
             }
