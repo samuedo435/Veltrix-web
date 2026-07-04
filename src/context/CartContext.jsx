@@ -46,8 +46,8 @@ export function CartProvider({ children }) {
 
             if (existe) {
 
-                setCarrito(
-                    carrito.map(item =>
+                setCarrito(prev =>
+                    prev.map(item =>
                         item.id === producto.id
                             ? {
                                 ...item,
@@ -60,8 +60,8 @@ export function CartProvider({ children }) {
 
             } else {
 
-                setCarrito([
-                    ...carrito,
+                setCarrito(prev => [
+                    ...prev,
                     {
                         ...producto,
                         cantidad: producto.cantidad || cantidad
@@ -69,6 +69,18 @@ export function CartProvider({ children }) {
                 ]);
             }
         };
+
+    const actualizarCantidad = (id, cantidad) => {
+        const cantidadValida = Math.max(1, Number(cantidad) || 1);
+
+        setCarrito(prev =>
+            prev.map(item =>
+                item.id === id
+                    ? { ...item, cantidad: cantidadValida }
+                    : item
+            )
+        );
+    };
 
     const eliminarDelCarrito =
         (id) => {
@@ -101,6 +113,7 @@ export function CartProvider({ children }) {
                 carrito,
                 total,
                 agregarAlCarrito,
+                actualizarCantidad,
                 eliminarDelCarrito,
                 vaciarCarrito
             }}

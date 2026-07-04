@@ -1,87 +1,102 @@
-import { useCart }
-from "../context/CartContext";
+﻿import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
+import "../styles/carrito.css";
 
 function Carrito() {
-
     const {
         carrito,
         total,
+        actualizarCantidad,
         eliminarDelCarrito
     } = useCart();
 
+    const subtotal = total;
+
     return (
+        <div className="carrito-page container py-5">
+            <div className="row g-4">
+                <div className="col-lg-8">
+                    <section className="carrito-panel">
+                        <div className="d-flex justify-content-between align-items-center mb-4">
+                            <div>
+                                <p className="carrito-eyebrow">Checkout</p>
+                                <h1 className="carrito-title">Tu carrito</h1>
+                            </div>
+                            <span className="carrito-count">{carrito.length} productos</span>
+                        </div>
 
-        <div className="container py-5">
+                        {carrito.length === 0 ? (
+                            <div className="carrito-empty">
+                                <h4>Tu carrito está vacío.</h4>
+                                <p>Explora el catálogo y encuentra tu próximo par favorito.</p>
+                                <Link to="/productos" className="btn btn-primary carrito-btn">Ver productos</Link>
+                            </div>
+                        ) : (
+                            <div className="carrito-items-list">
+                                {carrito.map(item => (
+                                    <div key={item.id} className="carrito-item-card">
+                                        <div className="carrito-item-image">
+                                            <img src={item.imagen || "https://via.placeholder.com/220x180.png?text=Veltrix"} alt={item.nombre} />
+                                        </div>
 
-            <h1 className="mb-5">
-                Mi carrito
-            </h1>
+                                        <div className="carrito-item-details">
+                                            <div className="d-flex justify-content-between align-items-start gap-3">
+                                                <div>
+                                                    <h5>{item.nombre}</h5>
+                                                    <p className="carrito-item-category">{item.categoriaNombre || "Sin categoría"}</p>
+                                                </div>
+                                                <button
+                                                    className="carrito-remove"
+                                                    onClick={() => eliminarDelCarrito(item.id)}
+                                                >
+                                                    Eliminar
+                                                </button>
+                                            </div>
 
-            {
-                carrito.length === 0
-                ? (
-                    <h4>
-                        Tu carrito está vacío.
-                    </h4>
-                )
-                : (
-                    <>
-                        {
-                            carrito.map(item => (
+                                            <div className="carrito-item-footer">
+                                                <div className="carrito-quantity">
+                                                    <label>Cantidad</label>
+                                                    <input
+                                                        type="number"
+                                                        min="1"
+                                                        value={item.cantidad}
+                                                        onChange={(e) => actualizarCantidad(item.id, e.target.value)}
+                                                    />
+                                                </div>
 
-                                <div
-                                    key={item.id}
-                                    className="card p-3 mb-3"
-                                >
+                                                <div className="carrito-price">${(item.precio * item.cantidad).toLocaleString()}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </section>
+                </div>
 
-                                    <h5>
-                                        {item.nombre}
-                                    </h5>
+                <div className="col-lg-4">
+                    <aside className="carrito-summary">
+                        <h3>Resumen</h3>
 
-                                    <p>
-                                        Cantidad:
-                                        {" "}
-                                        {item.cantidad}
-                                    </p>
+                        <div className="summary-row">
+                            <span>Subtotal</span>
+                            <span>${subtotal.toLocaleString()}</span>
+                        </div>
 
-                                    <p>
-                                        Precio:
-                                        {" "}
-                                        $
-                                        {item.precio
-                                            .toLocaleString()}
-                                    </p>
+                        <div className="summary-row">
+                            <span>Envío</span>
+                            <span>Gratis</span>
+                        </div>
 
-                                    <button
-                                        className="btn btn-danger"
-                                        onClick={() =>
-                                            eliminarDelCarrito(
-                                                item.id
-                                            )
-                                        }
-                                    >
-                                        Eliminar
-                                    </button>
+                        <div className="summary-row total-row">
+                            <span>Total</span>
+                            <span>${total.toLocaleString()}</span>
+                        </div>
 
-                                </div>
-
-                            ))
-                        }
-
-                        <h3>
-
-                            Total:
-                            {" "}
-                            $
-                            {total
-                                .toLocaleString()}
-
-                        </h3>
-
-                    </>
-                )
-            }
-
+                        <button className="btn w-100 finalizar-btn">Finalizar compra</button>
+                    </aside>
+                </div>
+            </div>
         </div>
     );
 }
