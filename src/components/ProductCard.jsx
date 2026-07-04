@@ -1,14 +1,16 @@
 ﻿import "../styles/product-card.css";
 import { Link } from "react-router-dom";
+import { getProductImage } from "../utils/productImages.js";
 
 function ProductCard({ producto }) {
-    const placeholder = "https://via.placeholder.com/600x400.png?text=Zapatilla";
+    const placeholder = "https://via.placeholder.com/600x400.png?text=Veltrix";
+    const imageSrc = getProductImage(producto.nombre) || placeholder;
 
     return (
         <article className="product-card">
 
             <div className="product-image">
-                <img src={producto.imagen || placeholder} alt={producto.nombre} />
+                <img src={imageSrc} alt={producto.nombre} />
             </div>
 
             <div className="product-body">
