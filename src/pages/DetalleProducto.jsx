@@ -4,6 +4,7 @@ import { obtenerProductoPorId, obtenerProductos } from "../services/productoServ
 import { useCart } from "../context/CartContext";
 import ProductCard from "../components/ProductCard";
 import "../styles/detalle-producto.css";
+import { getProductImage } from "../utils/productImages.js";
 
 function DetalleProducto() {
     const { id } = useParams();
@@ -69,47 +70,48 @@ function DetalleProducto() {
         );
     }
 
-    const imageUrl = producto.imagen || "https://via.placeholder.com/800x600.png?text=Zapatilla+Veltrix";
-
+    const placeholder = "https://via.placeholder.com/800x600.png?text=Zapatilla+Veltrix";
+    const imageUrl = getProductImage(producto.nombre) || producto.imagen || placeholder;
+    
     return (
         <main className="detalle-producto-page container py-5">
             <section className="detalle-top row gy-5 align-items-center">
-                <div className="col-lg-6">
-                    <div className="detalle-image-card">
-                        <img src={imageUrl} alt={producto.nombre} />
-                    </div>
-                </div>
-
-                <div className="col-lg-6">
+                <div className="col-12">
                     <div className="detalle-info-card">
-                        <p className="detalle-category">{producto.categoriaNombre || "Sin categoría"}</p>
-                        <h1 className="detalle-title">{producto.nombre}</h1>
-                        <p className="detalle-price">${producto.precio.toLocaleString()}</p>
-                        <div className="detalle-meta d-flex flex-wrap gap-3 mb-4">
-                            <span className="detalle-stock">Stock: {producto.stock}</span>
-                            <span className="detalle-id">Referencia: {producto.id}</span>
-                        </div>
+                        <div className="detalle-info-content">
+                            <p className="detalle-category">{producto.categoriaNombre || "Sin categoría"}</p>
+                            <h1 className="detalle-title">{producto.nombre}</h1>
+                            <p className="detalle-price">${producto.precio.toLocaleString()}</p>
+                            <div className="detalle-meta d-flex flex-wrap gap-3 mb-4">
+                                <span className="detalle-stock">Stock: {producto.stock}</span>
+                                <span className="detalle-id">Referencia: {producto.id}</span>
+                            </div>
 
-                        <div className="detalle-quantity mb-4">
-                            <label className="form-label">Cantidad</label>
-                            <div className="cantidad-selector">
-                                <button type="button" onClick={decrementar} className="cantidad-btn">-</button>
-                                <span>{cantidad}</span>
-                                <button type="button" onClick={incrementar} className="cantidad-btn">+</button>
+                            <div className="detalle-quantity mb-4">
+                                <label className="form-label">Cantidad</label>
+                                <div className="cantidad-selector">
+                                    <button type="button" onClick={decrementar} className="cantidad-btn">-</button>
+                                    <span>{cantidad}</span>
+                                    <button type="button" onClick={incrementar} className="cantidad-btn">+</button>
+                                </div>
+                            </div>
+
+                            <button
+                                className="btn agregar-btn"
+                                onClick={() => agregarAlCarrito({ ...producto, cantidad }, cantidad)}
+                                disabled={producto.stock === 0}
+                            >
+                                {producto.stock > 0 ? "Agregar al carrito" : "Agotado"}
+                            </button>
+
+                            <div className="detalle-description mt-4">
+                                <h2>Descripción</h2>
+                                <p>{producto.descripcion}</p>
                             </div>
                         </div>
 
-                        <button
-                            className="btn agregar-btn"
-                            onClick={() => agregarAlCarrito({ ...producto, cantidad }, cantidad)}
-                            disabled={producto.stock === 0}
-                        >
-                            {producto.stock > 0 ? "Agregar al carrito" : "Agotado"}
-                        </button>
-
-                        <div className="detalle-description mt-4">
-                            <h2>Descripción</h2>
-                            <p>{producto.descripcion}</p>
+                        <div className="detalle-image-card">
+                            <img src={imageUrl} alt={producto.nombre} />
                         </div>
                     </div>
                 </div>
