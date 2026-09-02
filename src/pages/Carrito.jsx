@@ -1,5 +1,6 @@
 ﻿import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { getProductImage } from "../utils/productImages.js";
 import "../styles/carrito.css";
 
 function Carrito() {
@@ -36,7 +37,7 @@ function Carrito() {
                                 {carrito.map(item => (
                                     <div key={item.id} className="carrito-item-card">
                                         <div className="carrito-item-image">
-                                            <img src={item.imagen || "https://via.placeholder.com/220x180.png?text=Veltrix"} alt={item.nombre} />
+                                            <img src={getProductImage(item.nombre) || item.imagen || "https://via.placeholder.com/220x180.png?text=Veltrix"} alt={item.nombre} />
                                         </div>
 
                                         <div className="carrito-item-details">
