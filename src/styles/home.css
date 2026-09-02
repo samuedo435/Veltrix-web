@@ -1,6 +1,5 @@
 .home-page {
     font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-    background: #000;
     color: #e6eef8;
     min-height: 100vh;
 }
@@ -57,7 +56,7 @@
 .section-title {
     font-size: 1.8rem;
     font-weight: 700;
-    color: #e6eef8;
+    color: #090d1a;
     margin-bottom: 1.5rem;
 }
 
