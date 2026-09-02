@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { obtenerProductos } from "../services/productoService";
 import ProductCard from "../components/ProductCard";
 import Footer from "../components/Footer";
+import header2Img from '../assets/header2.png';
 
 function Home() {
     const [productos, setProductos] =
@@ -45,7 +46,7 @@ function Home() {
                         <div className="col-lg-6 d-none d-lg-block">
                             <div className="hero-image-wrap">
                                 <img
-                                    src="https://via.placeholder.com/700x500.png?text=Zapatilla+Veltrix"
+                                    src={header2Img}
                                     alt="Zapatilla Veltrix"
                                     className="hero-image"
                                 />
