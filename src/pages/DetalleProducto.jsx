@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { obtenerProductoPorId, obtenerProductos } from "../services/productoService";
 import { useCart } from "../context/CartContext";
 import ProductCard from "../components/ProductCard";
+import Footer from "../components/Footer";
 import "../styles/detalle-producto.css";
 import { getProductImage } from "../utils/productImages.js";
 
@@ -74,7 +75,8 @@ function DetalleProducto() {
     const imageUrl = getProductImage(producto.nombre) || producto.imagen || placeholder;
     
     return (
-        <main className="detalle-producto-page container py-5">
+        <>
+            <main className="detalle-producto-page container py-5">
             <section className="detalle-top row gy-5 align-items-center">
                 <div className="col-12">
                     <div className="detalle-info-card">
@@ -133,7 +135,9 @@ function DetalleProducto() {
                     </div>
                 </section>
             )}
-        </main>
+            </main>
+            <Footer />
+        </>
     );
 }
 

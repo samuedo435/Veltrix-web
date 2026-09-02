@@ -1,6 +1,7 @@
 ﻿import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { getProductImage } from "../utils/productImages.js";
+import Footer from "../components/Footer";
 import "../styles/carrito.css";
 
 function Carrito() {
@@ -14,7 +15,8 @@ function Carrito() {
     const subtotal = total;
 
     return (
-        <div className="carrito-page container py-5">
+        <>
+            <div className="carrito-page container py-5">
             <div className="row g-4">
                 <div className="col-lg-8">
                     <section className="carrito-panel">
@@ -98,7 +100,9 @@ function Carrito() {
                     </aside>
                 </div>
             </div>
-        </div>
+            </div>
+            <Footer />
+        </>
     );
 }
 

@@ -1,6 +1,7 @@
 ﻿import { useEffect, useMemo, useState } from "react";
 import { obtenerProductos } from "../services/productoService";
 import ProductCard from "../components/ProductCard";
+import Footer from "../components/Footer";
 import "../styles/productos.css";
 
 const categoriasSimuladas = [
@@ -56,57 +57,60 @@ function Productos() {
     }
 
     return (
-        <main className="productos-page container">
-            <section className="productos-hero">
-                <h1>Encuentra tu próximo par</h1>
-                <p>Explora las zapatillas Veltrix con estilo premium, rendimiento superior y opciones pensadas para cada paso.</p>
-            </section>
+        <>
+            <main className="productos-page container">
+                <section className="productos-hero">
+                    <h1>Encuentra tu próximo par</h1>
+                    <p>Explora las zapatillas Veltrix con estilo premium, rendimiento superior y opciones pensadas para cada paso.</p>
+                </section>
 
-            <div className="productos-controls">
-                <div className="productos-search">
-                    <input
-                        type="text"
-                        placeholder="Buscar por nombre o categoría"
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                    />
-                </div>
+                <div className="productos-controls">
+                    <div className="productos-search">
+                        <input
+                            type="text"
+                            placeholder="Buscar por nombre o categoría"
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                        />
+                    </div>
 
-                <div className="productos-filters">
-                    {categoriasSimuladas.map((item) => (
-                        <button
-                            key={item}
-                            className={`productos-filter-button ${categoria === item ? "active" : ""}`}
-                            onClick={() => setCategoria(item)}
-                            type="button"
+                    <div className="productos-filters">
+                        {categoriasSimuladas.map((item) => (
+                            <button
+                                key={item}
+                                className={`productos-filter-button ${categoria === item ? "active" : ""}`}
+                                onClick={() => setCategoria(item)}
+                                type="button"
+                            >
+                                {item}
+                            </button>
+                        ))}
+
+                        <select
+                            className="productos-sort-select"
+                            value={ordenPrecio}
+                            onChange={(e) => setOrdenPrecio(e.target.value)}
                         >
-                            {item}
-                        </button>
-                    ))}
+                            <option value="asc">Precio: menor a mayor</option>
+                            <option value="desc">Precio: mayor a menor</option>
+                        </select>
+                    </div>
+                </div>
 
-                    <select
-                        className="productos-sort-select"
-                        value={ordenPrecio}
-                        onChange={(e) => setOrdenPrecio(e.target.value)}
-                    >
-                        <option value="asc">Precio: menor a mayor</option>
-                        <option value="desc">Precio: mayor a menor</option>
-                    </select>
-                </div>
-            </div>
-
-            {productosFiltrados.length === 0 ? (
-                <div className="productos-empty">
-                    <p>No se encontraron productos con esos criterios.</p>
-                </div>
-            ) : (
-                <div className="productos-grid">
-                    {productosFiltrados.map((producto) => (
-                        <ProductCard key={producto.id} producto={producto} />
-                    ))}
-                </div>
-            )}
-        </main>
+                {productosFiltrados.length === 0 ? (
+                    <div className="productos-empty">
+                        <p>No se encontraron productos con esos criterios.</p>
+                    </div>
+                ) : (
+                    <div className="productos-grid">
+                        {productosFiltrados.map((producto) => (
+                            <ProductCard key={producto.id} producto={producto} />
+                        ))}
+                    </div>
+                )}
+            </main>
+            <Footer />
+        </>
     );
 }
 
