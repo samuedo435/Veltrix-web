@@ -114,7 +114,7 @@
 }
 
 .carrito-btn,
-.finalizar-btn {
+.btn.w-100.finalizar-btn {
     background: #2eb6ff;
     color: #041025;
     border: none;
