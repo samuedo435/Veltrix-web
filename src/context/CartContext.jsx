@@ -4,36 +4,38 @@ import {
     useEffect,
     useState
 } from "react";
+import { useAuth } from "./AuthContext";
 
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
 
-    const [carrito, setCarrito] =
-        useState([]);
+    const { isAuthenticated, loading: authLoading } = useAuth();
+    const [carrito, setCarrito] = useState(() => {
+        const carritoGuardado = localStorage.getItem("carrito");
+
+        if (!carritoGuardado) return [];
+
+        try {
+            return JSON.parse(carritoGuardado);
+        } catch {
+            localStorage.removeItem("carrito");
+            return [];
+        }
+    });
 
     useEffect(() => {
+        if (authLoading) return;
 
-        const carritoGuardado =
-            localStorage.getItem("carrito");
-
-        if (carritoGuardado) {
-
-            setCarrito(
-                JSON.parse(carritoGuardado)
-            );
+        if (!isAuthenticated) {
+            setCarrito([]);
+            localStorage.removeItem("carrito");
+            return;
         }
 
-    }, []);
+        localStorage.setItem("carrito", JSON.stringify(carrito));
 
-    useEffect(() => {
-
-        localStorage.setItem(
-            "carrito",
-            JSON.stringify(carrito)
-        );
-
-    }, [carrito]);
+    }, [authLoading, isAuthenticated, carrito]);
 
     const agregarAlCarrito =
         (producto, cantidad = 1) => {
