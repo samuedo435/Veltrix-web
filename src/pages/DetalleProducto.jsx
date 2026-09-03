@@ -2,6 +2,7 @@
 import { useParams } from "react-router-dom";
 import { obtenerProductoPorId, obtenerProductos } from "../services/productoService";
 import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
 import ProductCard from "../components/ProductCard";
 import Footer from "../components/Footer";
 import "../styles/detalle-producto.css";
@@ -13,7 +14,9 @@ function DetalleProducto() {
     const [productos, setProductos] = useState([]);
     const [loading, setLoading] = useState(true);
     const [cantidad, setCantidad] = useState(1);
+    const [aviso, setAviso] = useState(null);
     const { agregarAlCarrito } = useCart();
+    const { isAuthenticated, loading: authLoading } = useAuth();
 
     useEffect(() => {
         const cargarDatos = async () => {
@@ -55,6 +58,30 @@ function DetalleProducto() {
         setCantidad((prev) => Math.max(1, prev - 1));
     };
 
+    useEffect(() => {
+        if (!aviso) return undefined;
+
+        const timeoutId = setTimeout(() => setAviso(null), 3000);
+
+        return () => clearTimeout(timeoutId);
+    }, [aviso]);
+
+    const agregarProducto = () => {
+        if (!isAuthenticated) {
+            setAviso({
+                tipo: "error",
+                texto: "Inicia sesión para agregar productos al carrito."
+            });
+            return;
+        }
+
+        agregarAlCarrito({ ...producto, cantidad }, cantidad);
+        setAviso({
+            tipo: "success",
+            texto: "Producto agregado con éxito al carrito."
+        });
+    };
+
     if (loading) {
         return (
             <div className="container py-5">
@@ -77,6 +104,11 @@ function DetalleProducto() {
     return (
         <>
             <main className="detalle-producto-page container py-5">
+            {aviso && (
+                <div className={`detalle-aviso detalle-aviso-${aviso.tipo}`} role="status">
+                    {aviso.texto}
+                </div>
+            )}
             <section className="detalle-top row gy-5 align-items-center">
                 <div className="col-12">
                     <div className="detalle-info-card">
@@ -100,8 +132,8 @@ function DetalleProducto() {
 
                             <button
                                 className="btn agregar-btn"
-                                onClick={() => agregarAlCarrito({ ...producto, cantidad }, cantidad)}
-                                disabled={producto.stock === 0}
+                                onClick={agregarProducto}
+                                disabled={producto.stock === 0 || authLoading}
                             >
                                 {producto.stock > 0 ? "Agregar al carrito" : "Agotado"}
                             </button>

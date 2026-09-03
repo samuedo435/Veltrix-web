@@ -1,6 +1,44 @@
 .detalle-producto-page {
     color: #e6eef8;
     min-height: 100vh;
+    position: relative;
+}
+
+.detalle-aviso {
+    position: fixed;
+    top: 5.5rem;
+    right: 1.5rem;
+    z-index: 1050;
+    max-width: min(360px, calc(100vw - 3rem));
+    padding: 1rem 1.25rem;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    color: #ffffff;
+    font-weight: 600;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.28);
+    animation: detalle-aviso-entrada 0.25s ease-out;
+}
+
+.detalle-aviso-error {
+    background: #a83246;
+    border-color: #e05b70;
+}
+
+.detalle-aviso-success {
+    background: #18794e;
+    border-color: #3ebd7d;
+}
+
+@keyframes detalle-aviso-entrada {
+    from {
+        opacity: 0;
+        transform: translateY(-0.5rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .detalle-top {
