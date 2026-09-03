@@ -6,10 +6,10 @@ import "../styles/productos.css";
 
 const categoriasSimuladas = [
     "Todas",
-    "Running",
-    "Lifestyle",
-    "Entrenamiento",
-    "Trail"
+    "Hombres",
+    "Mujeres",
+    "Niños",
+    "Unisex"
 ];
 
 function Productos() {
