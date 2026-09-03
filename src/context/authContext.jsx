@@ -30,6 +30,7 @@ export function AuthProvider({ children }) {
             console.error(error);
 
             logout();
+            throw error;
         }
     };
 

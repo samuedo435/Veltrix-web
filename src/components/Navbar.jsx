@@ -7,6 +7,7 @@ function Navbar() {
     const [open, setOpen] = useState(false);
 
     const { usuario, isAuthenticated, logout } = useAuth();
+    const nombreUsuario = usuario?.nombre || usuario?.nombreUsuario || usuario?.correo;
 
     return (
         <nav className="navbar-custom navbar navbar-expand-lg">
@@ -42,7 +43,7 @@ function Navbar() {
                     <div className="d-flex align-items-center gap-3">
                         {isAuthenticated ? (
                             <>
-                                <span className="user-email d-none d-lg-inline">{usuario?.correo}</span>
+                                <span className="user-email">{nombreUsuario}</span>
                                 <button className="btn btn-outline-light btn-sm rounded-pill" onClick={() => { logout(); setOpen(false); }}>
                                     Cerrar sesión
                                 </button>

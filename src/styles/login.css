@@ -1,0 +1,243 @@
+/* src/styles/Login.css */
+
+/* Reset básico para esta página */
+.login-page {
+  font-family: Arial, sans-serif;
+  background-color: #0d1117;
+  color: #fff;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilos de la navegación */
+.login-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: #0a0e14;
+}
+
+.login-nav-logo {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.login-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.login-nav-links a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.login-nav-links a:hover {
+  color: #fff;
+}
+
+.login-nav-btn {
+  background: transparent;
+  border: 1px solid #1f293a;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* Estilos del contenido principal */
+.login-main-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.login-content-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  max-width: 1100px;
+  width: 100%;
+}
+
+/* Sección de Bienvenida */
+.welcome-section {
+  flex: 1;
+  margin-top: 50px;
+}
+
+.welcome-section-sub {
+  color: #00bcd4;
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.welcome-section-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.welcome-section-text {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-top: 20px;
+}
+
+.welcome-section-list {
+  list-style: disc;
+  padding-left: 20px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 20px;
+}
+
+/* Sección del Formulario y Tarjeta */
+.login-card-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-card {
+  background-color: #0a0e14;
+  padding: 30px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 450px;
+}
+
+/* Pestañas */
+.login-tabs {
+  display: flex;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.login-tab {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  padding: 15px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.login-tab.active {
+  background-color: rgba(0, 188, 212, 0.1);
+  color: #fff;
+}
+
+/* Formulario */
+.login-form .form-group {
+  margin-bottom: 20px;
+}
+
+.login-form label {
+  display: block;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 8px;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 12px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid #1f293a;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.login-form input:focus {
+  outline: none;
+  border-color: #00bcd4;
+}
+
+.login-submit-btn {
+  width: 100%;
+  padding: 15px;
+  background-color: #00bcd4;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.login-submit-btn:hover {
+  background-color: #0099ad;
+}
+
+.login-card-footer {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.8rem;
+  margin-top: 20px;
+}
+
+/* Alertas de error/éxito */
+.alert {
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+}
+
+.alert-error {
+  background-color: rgba(255, 0, 0, 0.1);
+  color: #f44336;
+  border: 1px solid #f44336;
+}
+
+.alert-success {
+  background-color: rgba(0, 255, 0, 0.1);
+  color: #4caf50;
+  border: 1px solid #4caf50;
+}
+
+/* Botón flotante del carrito */
+.floating-cart-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #00bcd4;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.floating-cart-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Adaptación para pantallas más pequeñas */
+@media (max-width: 900px) {
+  .login-content-wrapper {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+}
