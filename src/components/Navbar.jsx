@@ -43,7 +43,14 @@ function Navbar() {
                     <div className="d-flex align-items-center gap-3">
                         {isAuthenticated ? (
                             <>
-                                <span className="user-email">{nombreUsuario}</span>
+                                <div className="user-profile-link">
+                                    <span className="user-email">{nombreUsuario}</span>
+                                    <Link to="/profile" className="profile-icon" aria-label="Ir a mi perfil" title="Mi perfil" onClick={() => setOpen(false)}>
+                                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                            <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 2c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5Z" />
+                                        </svg>
+                                    </Link>
+                                </div>
                                 <button className="btn btn-outline-light btn-sm rounded-pill" onClick={() => { logout(); setOpen(false); }}>
                                     Cerrar sesión
                                 </button>

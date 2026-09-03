@@ -15,7 +15,7 @@ function Footer() {
 						<h6 className="text-white">Enlaces</h6>
 						<ul className="list-unstyled small">
 							<li><Link to="/productos">Catálogo</Link></li>
-							<li><Link to="/perfil">Mi cuenta</Link></li>
+							<li><Link to="/profile">Mi cuenta</Link></li>
 							<li><Link to="/contacto">Contacto</Link></li>
 						</ul>
 					</div>

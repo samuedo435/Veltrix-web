@@ -56,7 +56,38 @@
 }
 
 /* Small adjustments */
+.user-profile-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
 .user-email { color: var(--muted); font-size: 0.9rem; }
+
+.profile-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    color: #ffffff !important;
+    border: 1px solid rgba(230,238,248,0.2);
+    border-radius: 50%;
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.profile-icon:hover,
+.profile-icon:focus-visible {
+    color: #041025 !important;
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
+
+.profile-icon svg {
+    width: 1.15rem;
+    height: 1.15rem;
+    fill: currentColor;
+}
 
 @media (max-width: 991px) {
     .user-email { display: none; }
