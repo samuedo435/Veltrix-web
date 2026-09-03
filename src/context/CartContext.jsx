@@ -10,32 +10,36 @@ const CartContext = createContext();
 
 export function CartProvider({ children }) {
 
-    const { isAuthenticated, loading: authLoading } = useAuth();
-    const [carrito, setCarrito] = useState(() => {
-        const carritoGuardado = localStorage.getItem("carrito");
+const { isAuthenticated, loading: authLoading } = useAuth();
+const [carrito, setCarrito] = useState(() => {
+    const carritoGuardado = localStorage.getItem("carrito");
 
-        if (!carritoGuardado) return [];
+    if (!carritoGuardado) return [];
 
-        try {
-            return JSON.parse(carritoGuardado);
-        } catch {
-            localStorage.removeItem("carrito");
-            return [];
-        }
-    });
+    try {
+        return JSON.parse(carritoGuardado);
+    } catch {
+        localStorage.removeItem("carrito");
+        return [];
+    }
+});
 
-    useEffect(() => {
-        if (authLoading) return;
+// Limpia el carrito solo cuando cambie el estado de autenticación
+useEffect(() => {
+    if (authLoading) return;
 
-        if (!isAuthenticated) {
-            setCarrito([]);
-            localStorage.removeItem("carrito");
-            return;
-        }
+    if (!isAuthenticated) {
+        setCarrito([]);
+        localStorage.removeItem("carrito");
+    }
+}, [authLoading, isAuthenticated]); // Sin 'carrito' aquí
 
-        localStorage.setItem("carrito", JSON.stringify(carrito));
+// Sincronizar el carrito en localStorage solo cuando hay cambios en el carrito y el usuario está autenticado
+useEffect(() => {
+    if (authLoading || !isAuthenticated) return;
 
-    }, [authLoading, isAuthenticated, carrito]);
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+}, [carrito, isAuthenticated, authLoading]);
 
     const agregarAlCarrito =
         (producto, cantidad = 1) => {
