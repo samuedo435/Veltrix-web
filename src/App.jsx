@@ -12,6 +12,7 @@ import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar";
 import DetalleProducto from "./pages/DetalleProducto";
 import Carrito from "./pages/Carrito";
+import FloatingCart from "./components/FloatingCart";
 
 function App() {
 
@@ -59,6 +60,8 @@ function App() {
                 />
 
             </Routes>
+
+            <FloatingCart />
 
         </BrowserRouter>
 
