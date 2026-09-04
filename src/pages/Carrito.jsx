@@ -96,7 +96,7 @@ function Carrito() {
                             <span>${total.toLocaleString()}</span>
                         </div>
 
-                        <button className="btn w-100 finalizar-btn">Finalizar compra</button>
+                        <Link to="/checkout" className="btn w-100 finalizar-btn">Finalizar compra</Link>
                     </aside>
                 </div>
             </div>

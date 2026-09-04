@@ -13,6 +13,14 @@ import Navbar from "./components/Navbar";
 import DetalleProducto from "./pages/DetalleProducto";
 import Carrito from "./pages/Carrito";
 import FloatingCart from "./components/FloatingCart";
+import { Checkout } from "./pages/Checkout";
+import { useCart } from "./context/CartContext";
+
+function CheckoutPage() {
+    const { carrito, vaciarCarrito } = useCart();
+
+    return <Checkout carrito={carrito} vaciarCarrito={vaciarCarrito} />;
+}
 
 function App() {
 
@@ -57,6 +65,11 @@ function App() {
                 <Route
                     path="/carrito"
                     element={<Carrito />}
+                />
+
+                <Route
+                    path="/checkout"
+                    element={<CheckoutPage />}
                 />
 
             </Routes>
