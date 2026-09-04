@@ -71,6 +71,11 @@
 
 .profile-primary-btn:disabled { cursor: not-allowed; opacity: 0.45; }
 
+.profile-primary-btn:not(:disabled) {
+    background-color: #2eb6ff;
+    color: #041025;
+}
+
 .profile-message {
     margin-bottom: 1.25rem;
     padding: 0.8rem 1rem;
@@ -137,9 +142,10 @@
 .profile-dialog p { color: #9fbfe9; }
 .profile-dialog-actions { display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem; }
 
-.profile-cancel-btn {
+.profile-cancel-btn:not(:disabled) {
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 999px;
+    background:#a83246;
     color: #e6eef8;
 }
 
