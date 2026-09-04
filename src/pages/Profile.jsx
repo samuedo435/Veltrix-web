@@ -110,22 +110,43 @@ function Profile() {
     const guardarCambios = async () => {
         setGuardando(true);
         setError("");
-
+        
         try {
-            const camposModificados = Object.fromEntries(
-                camposPerfil
-                    .filter(({ nombre }) => valoresFormulario[nombre] !== datosPerfil[nombre])
-                    .map(({ nombre }) => [nombre, valoresFormulario[nombre]])
-            );
-            const respuesta = await actualizarUsuario(obtenerIdUsuario(usuario), camposModificados);
-            const datosActualizados = respuesta || { ...usuario, ...camposModificados };
-            actualizarDatosUsuario(datosActualizados);
-            setFormulario(obtenerDatosPerfil(datosActualizados));
+            const clienteId = usuario?.cliente?.id;
+        
+            if (!clienteId) {
+                throw new Error("No se encontró el ID del cliente para actualizar.");
+            }
+        
+            // Construir el objeto completo requerido por el esquema Cliente de la API
+            const payloadCliente = {
+                id: clienteId,
+                nombre: valoresFormulario.nombre || datosPerfil.nombre,
+                apellido: valoresFormulario.apellido || datosPerfil.apellido,
+                telefono: valoresFormulario.telefono || datosPerfil.telefono,
+                direccion: valoresFormulario.direccion || datosPerfil.direccion,
+                usuario: {
+                    id: usuario.id,
+                    correo: usuario.correo,
+                    rol: usuario.rol
+                }
+            };
+        
+            const clienteActualizado = await actualizarUsuario(clienteId, payloadCliente);
+        
+            // Actualizar el estado global del usuario con la información nueva del cliente
+            const usuarioActualizado = {
+                ...usuario,
+                cliente: clienteActualizado
+            };
+        
+            actualizarDatosUsuario(usuarioActualizado);
+            setFormulario(obtenerDatosPerfil(usuarioActualizado));
             setMensaje("Tus datos se actualizaron correctamente.");
             setConfirmar(false);
         } catch (updateError) {
-            console.error(updateError);
-            setError("No se pudieron actualizar tus datos. Inténtalo nuevamente.");
+            console.error("Error al actualizar el perfil:", updateError);
+            setError("No se pudieron actualizar tus datos. Verifica que todos los campos estén completos.");
         } finally {
             setGuardando(false);
         }

@@ -7,6 +7,6 @@ const authConfig = () => ({
 });
 
 export const actualizarUsuario = async (id, datos) => {
-	const response = await api.put(`/usuarios/${id}`, datos, authConfig());
+	const response = await api.put(`/clientes/${id}`, datos, authConfig());
 	return response.data;
 };
