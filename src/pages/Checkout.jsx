@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import api from "../services/api";
+import Footer from "../components/Footer";
 import "../styles/checkout.css";
 
 export function Checkout({ carrito, vaciarCarrito }) {
@@ -60,6 +61,7 @@ export function Checkout({ carrito, vaciarCarrito }) {
     };
 
     return (
+        <>
         <div className="checkout-container container py-5">
             <h2>Finalizar Compra</h2>
 
@@ -132,5 +134,7 @@ export function Checkout({ carrito, vaciarCarrito }) {
                 </div>
             </div>
         </div>
+        <Footer />
+        </>
     );
 }
