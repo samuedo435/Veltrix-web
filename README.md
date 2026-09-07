@@ -57,6 +57,7 @@ npm install
 # 3. Iniciar el servidor de desarrollo
 npm run dev
 ```
+Por defecto, la aplicación estará disponible en http://localhost:5173.
 
 ## Scripts
 
