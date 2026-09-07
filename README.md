@@ -1,17 +1,62 @@
-# Veltrix Web
+# 👟 Veltrix Web
 
-Frontend de la tienda Veltrix, construido con React, Vite, React Router y Axios.
-La interfaz está en español y consume un backend REST local.
+[![React](https://img.shields.io/badge/React-18.x-61DAFB?logo=react&logoColor=white)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-5.x-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-5.x-7952B3?logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
+[![Status](https://img.shields.io/badge/Estado-En_Desarrollo-green)]()
 
-## Ejecutar el proyecto
+Interfaz de usuario para la tienda de calzado **Veltrix**, desarrollada como una Single Page Application (SPA) responsiva con **React**, **Vite** y **Bootstrap**. Consume la API REST expuesta por el servicio backend.
 
-```bash
+---
+
+## 🚀 Características Principales
+
+- 🛍️ **Catálogo de Calzado:** Filtrado por categoría (*Hombre, Mujer, Niños, Unisex*) y ordenamiento dinámico por precio (*ascendente y descendente*).
+- 🛒 **Carrito de Compras Persistente:** Gestión del estado global sincronizada con la sesión activa mediante `CartProvider`.
+- 🔐 **Autenticación JWT:** Inicio de sesión y registro de usuarios. Los endpoints protegidos adjuntan automáticamente el token Bearer JWT.
+- 📱 **Diseño Responsivo:** Adaptado a dispositivos móviles, tablets y escritorios utilizando Bootstrap.
+
+---
+
+## 🛠️ Stack Tecnológico
+
+- **Framework/Librería:** React
+- **Herramienta de Construcción:** Vite
+- **Enrutamiento:** React Router
+- **Cliente HTTP:** Axios
+- **Estilos:** Bootstrap
+- **Linter:** ESLint
+
+---
+
+## 🔗 Proyectos Relacionados (Backend)
+
+Este frontend se comunica de manera independiente con un servicio backend:
+
+- **Repositorio Backend:** [Veltrix Backend (Spring Boot)](https://github.com/samuedo435/Veltrix-StandAlone.git)
+- **Documentación de la API:** Una vez iniciado el backend, puedes acceder a Swagger UI en `http://localhost:8080/swagger-ui.html`
+
+---
+
+## ⚙️ Configuración del Entorno de Desarrollo
+
+### Requisitos Previos
+- Node.js (versión 18.x o superior recomendada)
+- npm (o yarn/pnpm)
+- El servidor backend de Veltrix en ejecución en `http://localhost:8080`
+
+## Instalación e Inicio
+```
+# 1. Clonar el repositorio
+git clone https://github.com/samuedo435/Veltrix-web.git
+cd veltrix-web
+
+# 2. Instalar dependencias
 npm install
+
+# 3. Iniciar el servidor de desarrollo
 npm run dev
 ```
-
-El backend debe estar disponible en `http://localhost:8080/api`. La instancia
-Axios compartida está definida en `src/services/api.js`.
 
 ## Scripts
 
