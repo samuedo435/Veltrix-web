@@ -3,6 +3,8 @@ import { login as loginService, register as registerService } from "../services/
 import { useAuth } from "../context/AuthContext";
 import "../styles/login.css"; 
 
+// El mismo formulario cubre registro y login. El registro crea la cuenta; el
+// login obtiene un JWT y delega en AuthContext la carga del usuario completo.
 function Login() {
     const [isRegistering, setIsRegistering] = useState(false);
     const [nombre, setNombre] = useState("");
@@ -14,7 +16,7 @@ function Login() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const { login } = useAuth();
 
-    // Estados para mensajes de éxito/error
+    // Mensajes visibles para errores de validación/API y operaciones exitosas.
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
 
@@ -23,7 +25,7 @@ function Login() {
     setError(null);
     setSuccess(null);
 
-    // Validación simple en el front-end
+    // Validación mínima para evitar enviar formularios incompletos al backend.
     if (
         !correo ||
         !password ||
@@ -148,6 +150,7 @@ function Login() {
                     type="tel"
                     id="telefono"
                     value={telefono}
+                    // El backend recibe el teléfono solo con caracteres numéricos.
                     onChange={(e) => setTelefono(e.target.value.replace(/\D/g, ""))}
                     inputMode="numeric"
                     pattern="[0-9]*"

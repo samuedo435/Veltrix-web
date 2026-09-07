@@ -1,3 +1,5 @@
+/* Variables globales y estilos base compartidos por toda la aplicación. */
+:root {
 :root {
     --background: #000000;
     --surface: #090d1a;

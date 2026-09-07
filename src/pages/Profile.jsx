@@ -15,6 +15,8 @@ const camposPerfil = [
     { nombre: "direccion", etiqueta: "Dirección", tipo: "text" }
 ];
 
+// Las respuestas del backend pueden identificar usuario y cliente con nombres
+// distintos; estos adaptadores mantienen esa variación fuera del JSX.
 const obtenerIdUsuario = usuario => usuario?.id ?? usuario?.usuarioId;
 const obtenerIdCliente = usuario => usuario?.cliente?.id ?? usuario?.clienteId;
 
@@ -69,7 +71,8 @@ function Profile() {
             const respuestaPedidos = await obtenerPedidosPorCliente(clienteId);
             const listaPedidos = obtenerListaPedidos(respuestaPedidos);
 
-            // Cargar los detalles de cada pedido en paralelo
+            // Cargar los detalles en paralelo evita esperar una petición antes
+            // de iniciar la siguiente y conserva el pedido original.
             const pedidosConDetalles = await Promise.all(
                 listaPedidos.map(async (pedido) => {
                     try {
@@ -118,7 +121,8 @@ function Profile() {
                 throw new Error("No se encontró el ID del cliente para actualizar.");
             }
         
-            // Construir el objeto completo requerido por el esquema Cliente de la API
+            // El PUT requiere el Cliente completo, incluido el usuario anidado;
+            // enviar solo los campos editables haría fallar la validación del API.
             const payloadCliente = {
                 id: clienteId,
                 nombre: valoresFormulario.nombre || datosPerfil.nombre,
@@ -134,7 +138,8 @@ function Profile() {
         
             const clienteActualizado = await actualizarUsuario(clienteId, payloadCliente);
         
-            // Actualizar el estado global del usuario con la información nueva del cliente
+            // Mantener AuthContext actualizado hace que navbar y checkout vean
+            // los cambios sin recargar la página.
             const usuarioActualizado = {
                 ...usuario,
                 cliente: clienteActualizado

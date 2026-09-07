@@ -1,3 +1,5 @@
+/* Estilos de Home.jsx y Footer.jsx, incluidos los overrides visuales que la
+    portada aplica a ProductCard y a la sección de beneficios. */
 .home-page {
     font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
     color: #e6eef8;

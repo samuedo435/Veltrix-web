@@ -10,6 +10,8 @@ const CartContext = createContext();
 
 export function CartProvider({ children }) {
 
+// El carrito se guarda localmente para sobrevivir a la navegación, pero solo
+// se sincroniza después de confirmar que existe una sesión autenticada.
 const { isAuthenticated, loading: authLoading } = useAuth();
 const [carrito, setCarrito] = useState(() => {
     const carritoGuardado = localStorage.getItem("carrito");
@@ -24,7 +26,8 @@ const [carrito, setCarrito] = useState(() => {
     }
 });
 
-// Limpia el carrito solo cuando cambie el estado de autenticación
+// Al cerrar sesión se elimina también la copia local para evitar mezclar
+// productos entre cuentas.
 useEffect(() => {
     if (authLoading) return;
 
@@ -32,9 +35,9 @@ useEffect(() => {
         setCarrito([]);
         localStorage.removeItem("carrito");
     }
-}, [authLoading, isAuthenticated]); // Sin 'carrito' aquí
+}, [authLoading, isAuthenticated]);
 
-// Sincronizar el carrito en localStorage solo cuando hay cambios en el carrito y el usuario está autenticado
+// Persistir cada cambio del carrito únicamente para la sesión activa.
 useEffect(() => {
     if (authLoading || !isAuthenticated) return;
 
@@ -50,6 +53,8 @@ useEffect(() => {
                         item.id === producto.id
                 );
 
+            // Un producto ocupa una sola línea; agregarlo de nuevo acumula sus
+            // unidades en lugar de crear una entrada duplicada.
             if (existe) {
 
                 setCarrito(prev =>
@@ -77,6 +82,8 @@ useEffect(() => {
         };
 
     const actualizarCantidad = (id, cantidad) => {
+        // La interfaz siempre conserva al menos una unidad y convierte a
+        // número cualquier valor procedente de un input HTML.
         const cantidadValida = Math.max(1, Number(cantidad) || 1);
 
         setCarrito(prev =>

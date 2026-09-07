@@ -16,6 +16,7 @@ import FloatingCart from "./components/FloatingCart";
 import { Checkout } from "./pages/Checkout";
 import { useCart } from "./context/CartContext";
 
+// Adaptador que entrega al checkout el carrito global y su acción de limpieza.
 function CheckoutPage() {
     const { carrito, vaciarCarrito } = useCart();
 
@@ -28,8 +29,11 @@ function App() {
 
         <BrowserRouter>
 
+            {/* La navegación y el carrito flotante rodean todas las páginas. */}
             <Navbar />
 
+            {/* Las rutas públicas se mantienen aquí para que el mapa de la app
+                sea visible en un único punto. */}
             <Routes>
 
                 <Route

@@ -1,6 +1,9 @@
 /* src/styles/Login.css */
 
 /* Reset básico para esta página */
+/* Estilos de Login.jsx. La navegación antigua quedó sin uso; el componente
+  actual utiliza solo la composición del formulario y sus estados de alerta. */
+/* Reset básico para esta página */
 .login-page {
   font-family: Arial, sans-serif;
   background-color: #0d1117;

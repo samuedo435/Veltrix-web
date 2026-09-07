@@ -1,3 +1,5 @@
+/* Estilos de Navbar.jsx. Incluye overrides de Bootstrap y el estado del menú
+    colapsable que se activa en pantallas pequeñas. */
 .navbar-custom {
     background: #000000;
     border-bottom: 1px solid rgba(255,255,255,0.04);

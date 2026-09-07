@@ -4,6 +4,7 @@ import ProductCard from "../components/ProductCard";
 import Footer from "../components/Footer";
 import "../styles/productos.css";
 
+// Filtro local hasta que categoriaService se conecte al endpoint de categorías.
 const categoriasSimuladas = [
     "Todas",
     "Hombres",
@@ -34,6 +35,8 @@ function Productos() {
         cargarProductos();
     }, []);
 
+    // La búsqueda, categoría y orden se aplican en memoria para evitar nuevas
+    // peticiones mientras el usuario cambia los controles del catálogo.
     const productosFiltrados = useMemo(() => {
         const buscados = productos.filter((producto) => {
             const texto = `${producto.nombre} ${producto.categoriaNombre}`.toLowerCase();

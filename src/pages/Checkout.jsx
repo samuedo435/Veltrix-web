@@ -7,11 +7,13 @@ import "../styles/checkout.css";
 export function Checkout({ carrito, vaciarCarrito }) {
     const { usuario } = useAuth();
 
-    // Precargar la dirección registrada en el perfil del cliente
+    // La dirección se precarga desde el cliente asociado, pero el comprador
+    // puede modificarla para este pedido concreto.
     const [direccionEnvio, setDireccionEnvio] = useState(
         usuario?.cliente?.direccion || ""
     );
-    const [metodoPago, setMetodoPago] = useState("EFECTIVO"); // Ajustar a Enum backend
+    // Estos valores deben coincidir con el enum MetodoPago del backend.
+    const [metodoPago, setMetodoPago] = useState("EFECTIVO");
     const [procesando, setProcesando] = useState(false);
     const [error, setError] = useState("");
 
@@ -28,7 +30,8 @@ export function Checkout({ carrito, vaciarCarrito }) {
         try {
             const token = localStorage.getItem("token");
 
-            // Preparar el cuerpo de la petición acorde a CheckoutRequest DTO
+            // CheckoutRequest contiene solo los datos necesarios para crear el
+            // pedido; la identidad del cliente la determina el token JWT.
             const checkoutPayload = {
                 productos: carrito.map((item) => ({
                     productoId: item.id,
@@ -47,8 +50,8 @@ export function Checkout({ carrito, vaciarCarrito }) {
             if (response.data) {
                 vaciarCarrito();
                 alert(`¡Pedido #${response.data.pedidoId} realizado con éxito!`);
-                // Redirigir al perfil o historial de pedidos
-                window.location.href = "/perfil";
+                // El historial de pedidos se consulta desde la página de perfil.
+                window.location.href = "/profile";
             }
         } catch (err) {
             console.error("Error al procesar la compra:", err);
@@ -105,6 +108,7 @@ export function Checkout({ carrito, vaciarCarrito }) {
                         <button
                             type="submit"
                             className="btn btn-primary btn-lg w-100 mt-3"
+                            /* Un pedido vacío no se puede enviar al endpoint de checkout. */
                             disabled={procesando || carrito.length === 0}
                         >
                             {procesando ? "Procesando pedido..." : "Finalizar Compra"}

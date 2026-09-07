@@ -6,10 +6,11 @@ const authConfig = () => ({
     }
 });
 
+// El endpoint devuelve la colección visible para la sesión; el filtrado por
+// cliente se hace aquí porque el endpoint no recibe clienteId como parámetro.
 export const obtenerPedidosPorCliente = async (clienteId) => {
     const response = await api.get("/pedidos", authConfig());
     const pedidos = response.data || [];
 
-    // Filtra los pedidos pertenecientes al cliente logueado
     return pedidos.filter(pedido => pedido.clienteId === clienteId);
 };

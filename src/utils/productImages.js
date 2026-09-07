@@ -26,6 +26,9 @@ const productImages = {
     "unity step": unityStep
 };
 
+// Las claves se comparan normalizadas para tolerar diferencias de mayúsculas o
+// espacios en los nombres recibidos desde el backend. Devuelve undefined si no
+// existe una imagen local y el componente puede usar un placeholder.
 export function getProductImage(productName) {
     if (!productName) return undefined;
     return productImages[productName.trim().toLowerCase()];

@@ -8,6 +8,8 @@ import Footer from "../components/Footer";
 import "../styles/detalle-producto.css";
 import { getProductImage } from "../utils/productImages.js";
 
+// Carga el detalle solicitado y el catálogo completo en paralelo para poder
+// mostrar recomendaciones de la misma categoría sin una segunda espera.
 function DetalleProducto() {
     const { id } = useParams();
     const [producto, setProducto] = useState(null);
@@ -42,6 +44,7 @@ function DetalleProducto() {
     const productosRelacionados = useMemo(() => {
         if (!producto || productos.length === 0) return [];
 
+        // Se excluye el producto actual y se limita la sección a tres tarjetas.
         return productos
             .filter((item) => item.id !== producto.id && item.categoriaNombre === producto.categoriaNombre)
             .slice(0, 3);
@@ -61,6 +64,7 @@ function DetalleProducto() {
     useEffect(() => {
         if (!aviso) return undefined;
 
+        // Los avisos de autenticación o agregado desaparecen automáticamente.
         const timeoutId = setTimeout(() => setAviso(null), 3000);
 
         return () => clearTimeout(timeoutId);
@@ -75,6 +79,7 @@ function DetalleProducto() {
             return;
         }
 
+        // El contexto controla la sesión y consolida la cantidad por producto.
         agregarAlCarrito({ ...producto, cantidad }, cantidad);
         setAviso({
             tipo: "success",

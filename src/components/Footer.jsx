@@ -1,6 +1,8 @@
 import "../styles/home.css";
 import { Link } from "react-router-dom";
 
+// Pie compartido por las páginas públicas; los enlaces se mantienen aquí para
+// que no haya que repetirlos en cada página.
 function Footer() {
 	return (
 		<footer className="veltrix-footer">

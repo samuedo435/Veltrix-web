@@ -1,7 +1,8 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
+// React plugin transforma JSX y habilita el flujo de desarrollo de Vite para
+// los componentes de la aplicación.
 export default defineConfig({
   plugins: [react()],
 })

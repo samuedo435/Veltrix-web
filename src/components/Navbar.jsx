@@ -3,6 +3,8 @@ import { useAuth } from "../context/AuthContext";
 import "../styles/navbar.css";
 import { useState } from "react";
 
+// Navbar usa AuthContext como única fuente de identidad y cierra el menú móvil
+// después de cada navegación para no dejarlo abierto al cambiar de vista.
 function Navbar() {
     const [open, setOpen] = useState(false);
 

@@ -6,6 +6,8 @@ import ProductCard from "../components/ProductCard";
 import Footer from "../components/Footer";
 import header2Img from '../assets/header2.png';
 
+// La portada consulta el catálogo público y muestra solo sus tres primeros
+// productos como selección destacada; el catálogo completo vive en Productos.
 function Home() {
     const [productos, setProductos] =
         useState([]);
@@ -18,9 +20,7 @@ function Home() {
                 const data =
                     await obtenerProductos();
 
-                setProductos(
-                    data.slice(0, 3)
-                );
+                setProductos(data.slice(0, 3));
             };
 
         cargarProductos();

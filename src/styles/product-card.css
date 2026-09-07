@@ -1,4 +1,5 @@
-﻿.product-card {
+﻿/* Componente reutilizable ProductCard.jsx. */
+.product-card {
     background: linear-gradient(180deg, #071022 0%, #0b1422 100%);
     border-radius: 24px;
     overflow: hidden;

@@ -1,16 +1,33 @@
-# React + Vite
+# Veltrix Web
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend de la tienda Veltrix, construido con React, Vite, React Router y Axios.
+La interfaz está en español y consume un backend REST local.
 
-Currently, two official plugins are available:
+## Ejecutar el proyecto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm install
+npm run dev
+```
 
-## React Compiler
+El backend debe estar disponible en `http://localhost:8080/api`. La instancia
+Axios compartida está definida en `src/services/api.js`.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Scripts
 
-## Expanding the ESLint configuration
+- `npm run dev`: inicia el servidor de desarrollo.
+- `npm run build`: genera la versión de producción en `dist`.
+- `npm run lint`: ejecuta ESLint sobre los archivos JavaScript y JSX.
+- `npm run preview`: sirve localmente la compilación de producción.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Organización
+
+- `src/pages`: pantallas de inicio, catálogo, detalle, carrito, checkout, login y perfil.
+- `src/components`: navegación, pie de página, carrito flotante y tarjeta de producto.
+- `src/context`: estado global de autenticación y carrito.
+- `src/services`: llamadas HTTP agrupadas por recurso del backend.
+- `src/styles`: estilos asociados a cada pantalla o componente.
+- `src/utils`: utilidades compartidas, como el mapa de imágenes locales.
+
+El orden de providers en `src/main.jsx` es intencional: `CartProvider` depende
+del estado de autenticación para restaurar y persistir el carrito de la sesión activa.

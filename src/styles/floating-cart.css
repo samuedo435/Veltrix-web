@@ -1,3 +1,4 @@
+/* Botón flotante de FloatingCart.jsx; su visibilidad depende de la ruta actual. */
 .floating-cart-btn {
     position: fixed;
     right: 1.5rem;

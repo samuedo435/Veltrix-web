@@ -4,6 +4,8 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
+// Se ignora la salida generada y se aplican las reglas recomendadas a JS/JSX,
+// incluidos hooks de React y la compatibilidad con Fast Refresh.
 export default defineConfig([
   globalIgnores(['dist']),
   {

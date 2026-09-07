@@ -2,6 +2,8 @@
 import { Link } from "react-router-dom";
 import { getProductImage } from "../utils/productImages.js";
 
+// Requiere un producto con id, nombre, precio, stock y descripción. La imagen
+// local tiene prioridad y, si no hay coincidencia, se usa un placeholder remoto.
 function ProductCard({ producto }) {
     const placeholder = "https://via.placeholder.com/600x400.png?text=Veltrix";
     const imageSrc = getProductImage(producto.nombre) || placeholder;

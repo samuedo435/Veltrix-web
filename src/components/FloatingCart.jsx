@@ -2,6 +2,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import "../styles/floating-cart.css";
 
+// El acceso rápido se oculta dentro del carrito y su contador suma unidades,
+// no la cantidad de líneas de productos distintas.
 function FloatingCart() {
     const location = useLocation();
     const navigate = useNavigate();

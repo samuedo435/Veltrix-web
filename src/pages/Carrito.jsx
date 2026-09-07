@@ -4,6 +4,8 @@ import { getProductImage } from "../utils/productImages.js";
 import Footer from "../components/Footer";
 import "../styles/carrito.css";
 
+// Esta página presenta el estado del contexto; las reglas de cantidad y el
+// cálculo del total siguen centralizados en CartContext.
 function Carrito() {
     const {
         carrito,

@@ -1,3 +1,5 @@
+/* Layout y resumen de Carrito.jsx. El total y las cantidades vienen del
+    CartContext; esta hoja solo controla su presentación. */
 .carrito-page {
     color: #e6eef8;
     min-height: 100vh;
